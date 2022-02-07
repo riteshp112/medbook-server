@@ -49,9 +49,9 @@ def home():
   posts={}
   for item in res:
      posts.update(item) 
-  #temp=list(temp)
+  temp=list(temp)
   if temp==0:
     return Response(headers={'hua':'nahi'})
   else:
-    return Response(headers={"content":jsonify(posts)})
+    return Response(headers={"content":res.batch_size()})
   return ""
