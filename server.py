@@ -24,7 +24,7 @@ def login():
   res=col.find(a)
   res=list(res)
   if len(res)==0:
-    return json_response({'error': 'user not found'}, 500)
+    return {'error': 'user not found'}
   else:
-    return json_response({'succes': 'user found'}, 200)
+    return {'succes': 'user found'}
   return ""
