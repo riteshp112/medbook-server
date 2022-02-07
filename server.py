@@ -1,6 +1,6 @@
 from crypt import methods
 from urllib import response
-from flask import Flask, jsonify, request ,redirect
+from flask import Flask, jsonify, request ,redirect,Response
 import pymongo
 app=Flask(__name__)
 @app.route("/users",methods=['POST'])
@@ -25,7 +25,7 @@ def login():
   res=col.find(a)
   res=list(res)
   if len(res)==0:
-    return{"status":"500"}
+    return Response(headers={'hua':'nahi'})
   else:
-    return{"status":"200"}
+    return Response(headers={'hua':'ha'})
   return ""
