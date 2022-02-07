@@ -49,7 +49,7 @@ def home():
   posts={}
   for item in res:
      posts.update(item) 
-  temp=list(temp)
+  #temp=list(temp)
   if temp==0:
     return Response(headers={'hua':'nahi'})
   else:
