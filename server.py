@@ -53,5 +53,5 @@ def home():
   if temp==0:
     return Response(headers={'hua':'nahi'})
   else:
-    return Response(headers={"content":str(posts)})
+    return Response(headers={"content":jsonify(posts)})
   return ""
