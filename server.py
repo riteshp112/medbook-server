@@ -48,8 +48,9 @@ def home():
   temp=len(list(res))
   posts={}
   for item in res:
+      print("hey",item)
       posts[item.use]=item.post
-      print(item)
+      
   #temp=list(temp)
   if temp==0:
     return Response(headers={'hua':'nahi'})
