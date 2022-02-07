@@ -1,4 +1,3 @@
-python
 crypt
 flask
 pymongo
