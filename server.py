@@ -45,7 +45,7 @@ def home():
   db = client[ "testdb" ]
   col = db[ "post" ]
   res=col.find()
-  temp=res.copy()
+  temp=res
   posts={}
   for item in res:
       posts[item["use"]]=item["post"]
