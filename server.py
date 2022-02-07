@@ -24,7 +24,7 @@ def post():
 @app.route("/show",methods=['GET','POST'])
 def show():
   print("show")
-  return ""
+  return "Site is running OK"
 @app.route("/login",methods=["GET","POST"])
 def login():
   a=dict(request.json)
@@ -53,5 +53,5 @@ def home():
   if temp==0:
     return Response(headers={'hua':'nahi'})
   else:
-    return Response(headers={'hua':'ha',"content":list(res)})
+    return Response(headers={"content":str(posts)})
   return ""
