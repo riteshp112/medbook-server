@@ -51,7 +51,7 @@ def home():
      posts.update(item) 
   #temp=list(temp)
   if temp==0:
-    return Response(headers={'hua':'nahi'})
+    return Response(data={'hua':'nahi'})
   else:
-    return Response(headers={"content":res.count()})
+    return Response(data={"content":res.count()})
   return ""
