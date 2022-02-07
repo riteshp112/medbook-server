@@ -48,12 +48,10 @@ def home():
   temp=len(list(res))
   posts={}
   for item in res:
-      print("hey",item)
-      posts[item.use]=item.post
-      
+     posts.update(item) 
   #temp=list(temp)
   if temp==0:
     return Response(headers={'hua':'nahi'})
   else:
-    return Response(headers={'hua':'ha',"content":jsonify(res)})
+    return Response(headers={'hua':'ha',"content":})
   return ""
