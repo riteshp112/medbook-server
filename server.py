@@ -1,5 +1,5 @@
 from crypt import methods
-from flask import Flask, jsonify, request ,redirect,json_response
+from flask import Flask, jsonify, request ,redirect
 import pymongo
 app=Flask(__name__)
 @app.route("/users",methods=['POST'])
