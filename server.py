@@ -12,6 +12,15 @@ def users():
   col = db[ "testcol" ]
   x=col.insert_one(a)
   return ""
+@app.route("/post",methods=['POST'])
+def post():
+  a=dict(request.json)
+  a=dict(a)
+  client = pymongo.MongoClient("mongodb+srv://riteshp112:6O8yYtaH1KvOaeyz@ritesh.l5gt1.mongodb.net/testdb?retryWrites=true&w=majority&authSource=admin")
+  db = client[ "testdb" ]
+  col = db[ "post" ]
+  x=col.insert_one(a)
+  return ""
 @app.route("/show",methods=['GET','POST'])
 def show():
   print("show")
