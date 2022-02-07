@@ -38,3 +38,21 @@ def login():
   else:
     return Response(headers={'hua':'ha'})
   return ""
+@app.route("/home",methods=["GET","POST"])
+def home():
+  a=dict(request.json)
+  client = pymongo.MongoClient("mongodb+srv://riteshp112:6O8yYtaH1KvOaeyz@ritesh.l5gt1.mongodb.net/testdb?retryWrites=true&w=majority&authSource=admin",connect=False)
+  db = client[ "testdb" ]
+  col = db[ "post" ]
+  res=col.find()
+  
+  posts={}
+  for i in range(10):
+    if res.hasNext()==True:
+      posts[res.next()["use"]]=res.next()["post"]
+  res=list(res)
+  if len(res)==0:
+    return Response(headers={'hua':'nahi'})
+  else:
+    return Response(headers={'hua':'ha',"content":posts})
+  return ""
