@@ -53,5 +53,5 @@ def home():
   if temp==0:
     return Response(headers={'hua':'nahi'})
   else:
-    return Response(headers={'hua':'ha',"content":})
+    return Response(headers={'hua':'ha',"content":posts})
   return ""
