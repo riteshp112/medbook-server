@@ -25,7 +25,7 @@ def login():
   res=col.find(a)
   res=list(res)
   if len(res)==0:
-    response.update({"status:500"})
+    return{"status:500"}
   else:
-    response.update({"status:200"})
+    return{"status:200"}
   return ""
