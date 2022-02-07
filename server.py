@@ -1,5 +1,5 @@
 from crypt import methods
-from flask import Flask, jsonify, request ,redirect
+from flask import Flask, jsonify, request ,redirect,json_response
 import pymongo
 app=Flask(__name__)
 @app.route("/users",methods=['POST'])
@@ -22,5 +22,9 @@ def login():
   db = client[ "testdb" ]
   col = db[ "testcol" ]
   res=col.find(a)
-  print(a)
+  res=list(res)
+  if len(res==0):
+    return json_response({'error': 'user not found'}, 500)
+  else:
+    return json_response({'succes': 'user found'}, 200)
   return ""
