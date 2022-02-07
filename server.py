@@ -53,5 +53,5 @@ def home():
   if temp==0:
     return Response(data={'hua':'nahi'})
   else:
-    return Response(data={"content":res.count()})
+    return Response(data={"content":list(res)[0]})
   return ""
