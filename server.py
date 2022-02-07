@@ -45,11 +45,12 @@ def home():
   db = client[ "testdb" ]
   col = db[ "post" ]
   res=col.find()
+  temp=res.copy()
   posts={}
   for item in res:
       posts[item["use"]]=item["post"]
-  res=list(res)
-  if len(res)==0:
+  temp=list(temp)
+  if len(temp)==0:
     return Response(headers={'hua':'nahi'})
   else:
     return Response(headers={'hua':'ha',"content":posts})
