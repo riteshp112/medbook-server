@@ -23,7 +23,7 @@ def login():
   col = db[ "testcol" ]
   res=col.find(a)
   res=list(res)
-  if len(res==0):
+  if len(res)==0:
     return json_response({'error': 'user not found'}, 500)
   else:
     return json_response({'succes': 'user found'}, 200)
