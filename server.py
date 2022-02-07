@@ -1,4 +1,5 @@
 from crypt import methods
+from urllib import response
 from flask import Flask, jsonify, request ,redirect
 import pymongo
 app=Flask(__name__)
@@ -24,7 +25,7 @@ def login():
   res=col.find(a)
   res=list(res)
   if len(res)==0:
-    return {'error': 'user not found'}
+    response.update({"status:500"})
   else:
-    return {'succes': 'user found'}
+    response.update({"status:200"})
   return ""
