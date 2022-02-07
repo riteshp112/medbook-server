@@ -22,5 +22,5 @@ def login():
   db = client[ "testdb" ]
   col = db[ "testcol" ]
   res=col.find(a)
-  print(len(res[0].keys()))
+  print(a)
   return ""
