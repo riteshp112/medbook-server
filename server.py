@@ -18,7 +18,7 @@ def show():
 @app.route("/login",methods=["GET","POST"])
 def login():
   a=dict(request.json)
-  client = pymongo.MongoClient("mongodb+srv://riteshp112:6O8yYtaH1KvOaeyz@ritesh.l5gt1.mongodb.net/testdb?retryWrites=true&w=majority&authSource=admin")
+  client = pymongo.MongoClient("mongodb+srv://riteshp112:6O8yYtaH1KvOaeyz@ritesh.l5gt1.mongodb.net/testdb?retryWrites=true&w=majority&authSource=admin",connect=False)
   db = client[ "testdb" ]
   col = db[ "testcol" ]
   res=col.find(a)
