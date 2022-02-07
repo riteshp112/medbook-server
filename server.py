@@ -24,5 +24,3 @@ def login():
   res=col.find(a)
   print(len(res[0].keys()))
   return ""
-if __name__== "__main__":
-  app.run(debug=True)
