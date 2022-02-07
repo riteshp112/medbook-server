@@ -45,11 +45,9 @@ def home():
   db = client[ "testdb" ]
   col = db[ "post" ]
   res=col.find()
-  
   posts={}
-  for i in range(10):
-    if res.hasNext()==True:
-      posts[res.next()["use"]]=res.next()["post"]
+  for item in res:
+      posts[item["use"]]=item["post"]
   res=list(res)
   if len(res)==0:
     return Response(headers={'hua':'nahi'})
