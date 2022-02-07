@@ -53,5 +53,5 @@ def home():
   if temp==0:
     return Response(headers={'hua':'nahi'})
   else:
-    return Response(headers={"content":res.batch_size()})
+    return Response(headers={"content":res.count()})
   return ""
