@@ -47,7 +47,7 @@ def home():
   res=col.find()
   posts={}
   i=0
-  l=len(list(res))
+  #l=len(list(res))
   for item in res:
     posts[str(i)]={"use":item["use"],"post":item["post"]}
     i+=1
