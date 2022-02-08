@@ -45,13 +45,13 @@ def home():
   db = client[ "testdb" ]
   col = db[ "post" ]
   res=col.find()
-  temp=len(list(res))
+  '''temp=len(list(res))
   posts={}
   for item in res:
      posts.update(item) 
   #temp=list(temp)
   if temp==0:
     return Response(data={'hua':'nahi'})
-  else:
-    return Response(data={"content":list(res)[0]})
+  else:'''
+  return Response(data={"content":col[0]})
   return ""
