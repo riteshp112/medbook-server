@@ -48,7 +48,7 @@ def home():
   posts={}
   i=0
   for item in res:
-    posts[i]={"use":item["use"],"post":item["post"]}
+    posts[str(i)]={"use":item["use"],"post":item["post"]}
     i+=1
   '''temp=len(list(res))
   posts={}
