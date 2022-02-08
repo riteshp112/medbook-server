@@ -53,5 +53,5 @@ def home():
   if temp==0:
     return Response(data={'hua':'nahi'})
   else:'''
-  return Response(headers={"content":col[0]})
+  return Response(headers={"content":res[0]})
   return ""
