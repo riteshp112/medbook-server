@@ -47,7 +47,7 @@ def home():
   res=col.find()
   posts={}
   for item in res:
-    posts.update(item)
+    posts.update({"use":item.use,"post":item.post})
   '''temp=len(list(res))
   posts={}
   for item in res:
