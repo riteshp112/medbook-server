@@ -46,8 +46,10 @@ def home():
   col = db[ "post" ]
   res=col.find()
   posts={}
+  i=0
   for item in res:
-    posts.update({"use":item["use"],"post":item["post"]})
+    posts[i]={"use":item["use"],"post":item["post"]}
+    i+=1
   '''temp=len(list(res))
   posts={}
   for item in res:
