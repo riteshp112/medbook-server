@@ -48,7 +48,7 @@ def home():
   posts={}
   i=0
   a=int(a["plen"])
-  resf=res[a:a+5]
+  resf=res[:a+5]
   #l=len(list(res))
   for item in resf:
     posts[str(i)]={"use":item["use"],"post":item["post"]}
