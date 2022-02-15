@@ -47,7 +47,7 @@ def home():
   res=col.find()
   posts={}
   i=0
-  a=a["plen"]
+  a=int(a["plen"])
   resf=res[a:a+5]
   #l=len(list(res))
   for item in resf:
