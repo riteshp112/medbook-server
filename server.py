@@ -21,10 +21,9 @@ def post():
   col = db[ "post" ]
   x=col.insert_one(a)
   return ""
-@app.route("/show",methods=['GET','POST'])
+@app.route("/check",methods=['GET','POST'])
 def show():
-  print("show")
-  return "Site is running OK"
+  return "Sever is running OK"
 @app.route("/login",methods=["GET","POST"])
 def login():
   a=dict(request.json)
@@ -49,17 +48,8 @@ def home():
   i=0
   a=int(a["plen"])
   resf=res[:a+5]
-  #l=len(list(res))
   for item in resf:
     posts[str(i)]={"use":item["use"],"post":item["post"]}
     i+=1
-  '''temp=len(list(res))
-  posts={}
-  for item in res:
-     posts.update(item) 
-  #temp=list(temp)
-  if temp==0:
-    return Response(data={'hua':'nahi'})
-  else:'''
   return Response(headers={"content":posts})
   return ""
