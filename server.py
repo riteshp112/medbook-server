@@ -35,7 +35,7 @@ def login():
   if len(res)==0:
     return Response(headers={'hua':'nahi'})
   else:
-    return Response(headers={'hua':'ha'})
+    return Response(headers={'hua':'ha','details':jsonify(res[0])})
   return ""
 @app.route("/home",methods=["GET","POST"])
 def home():
