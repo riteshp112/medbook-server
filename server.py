@@ -54,3 +54,5 @@ def home():
     i+=1
   return Response(headers={"content":posts})
   return ""
+if __name__ == '__main__':
+  app.run(debug=True)
