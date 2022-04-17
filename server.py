@@ -33,7 +33,7 @@ def invoke():
     data=list(data)[:limit]
     for item in data:
       item["_id"]=str(item["_id"])
-    return Response(headers={"output":data,"Access-Control-Allow-Origin": "*","Access-Control-Allow-Headers":"Content-Type,Authorization","Access-Control-Allow-Credentials" : True })
+    return Response(headers={"output":data,"Access-Control-Allow-Origin": "*","Access-Control-Allow-Headers":"Content-Type,Authorization","Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS","Access-Control-Allow-Credentials" : True ,"Content-Type" :"application/json"})
   return Response(headers={"output":"Please Enter Valid Request","Access-Control-Allow-Origin": "*","Access-Control-Allow-Headers":"Content-Type,Authorization","Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS","Access-Control-Allow-Credentials" : True })
 
 if __name__ == "__main__":
