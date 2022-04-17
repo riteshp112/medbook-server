@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request ,redirect,Response
 import pymongo
 from flask_cors import CORS
 app=Flask(__name__)
-CORS(app)
+#CORS(app)
 @app.route("/invoke",methods=["GET","POST"])
 def invoke():
   invokeRequest=dict(request.json)
