@@ -7,3 +7,4 @@ MarkupSafe==2.0.1
 pymongo==4.0.1
 Werkzeug==2.0.2
 gunicorn
+flask_cors
