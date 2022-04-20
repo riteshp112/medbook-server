@@ -16,7 +16,7 @@ def invoke():
     data=invokeRequest["data"]
     res=client["testdb"][table].insert_one(data)
     print(res)
-    return {"response":str(res)}
+    return {"response":str(dir(res))}
   elif invokeType=="update":
     table=invokeRequest["table"]
     id=invokeRequest["id"]
@@ -25,7 +25,7 @@ def invoke():
     newvalues = { "$set": changes }
     res=client["testdb"][table].update_one(myquery, newvalues)    
     print(res)
-    return {"response":str(res)}
+    return {"response":str(dir(res))}
   elif invokeType=="select":
     print(str(request))
     table=invokeRequest["table"]
