@@ -3,6 +3,7 @@ from urllib import response
 from flask import Flask, jsonify, request ,redirect,Response
 import pymongo
 from flask_cors import CORS
+from bson.objectid import ObjectId
 app=Flask(__name__)
 CORS(app)
 @app.route("/invoke",methods=["GET","POST"])
@@ -16,16 +17,16 @@ def invoke():
     data=invokeRequest["data"]
     res=client["testdb"][table].insert_one(data)
     print(res)
-    return {"response":[i for i in res]}
+    return {"response":res.raw_result}
   elif invokeType=="update":
     table=invokeRequest["table"]
     id=invokeRequest["id"]
     changes=invokeRequest["changes"]
-    myquery = { "_id": "ObjectId("+id+")" }
+    myquery = { "_id": ObjectId(id) }
     newvalues = { "$set": changes }
     res=client["testdb"][table].update_one(myquery, newvalues)    
     print(res)
-    return {"response":[i for i in res]}
+    return {"response":res.raw_result}
   elif invokeType=="select":
     print(str(request))
     table=invokeRequest["table"]
