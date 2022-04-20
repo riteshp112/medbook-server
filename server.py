@@ -15,14 +15,16 @@ def invoke():
     table=invokeRequest["table"]
     data=invokeRequest["data"]
     res=client["testdb"][table].insert_one(data)
+    print(res)
     return {"response":str(res)}
   elif invokeType=="update":
     table=invokeRequest["table"]
     id=invokeRequest["id"]
     changes=invokeRequest["changes"]
-    myquery = { "_id": id }
+    myquery = { "_id": "ObjectId("+id+")" }
     newvalues = { "$set": changes }
     res=client["testdb"][table].update_one(myquery, newvalues)    
+    print(res)
     return {"response":str(res)}
   elif invokeType=="select":
     print(str(request))
