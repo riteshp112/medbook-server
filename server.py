@@ -15,7 +15,7 @@ def invoke():
     table=invokeRequest["table"]
     data=invokeRequest["data"]
     res=client["testdb"][table].insert_one(data)
-    return Response(headers={"output":res,"Access-Control-Allow-Origin": "*","Access-Control-Allow-Headers":"Content-Type,Authorization","Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS","Access-Control-Allow-Credentials" : True })
+    return {"response":res}
   elif invokeType=="update":
     table=invokeRequest["table"]
     id=invokeRequest["id"]
@@ -23,7 +23,7 @@ def invoke():
     myquery = { "_id": id }
     newvalues = { "$set": changes }
     res=client["testdb"][table].update_one(myquery, newvalues)    
-    return Response(headers={"output":res,"Access-Control-Allow-Origin": "*","Access-Control-Allow-Headers":"Content-Type,Authorization","Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS","Access-Control-Allow-Credentials" : True })
+    return {"response":res}
   elif invokeType=="select":
     print(str(request))
     table=invokeRequest["table"]
@@ -34,8 +34,7 @@ def invoke():
     for item in data:
       item["_id"]=str(item["_id"])
     return {"response":data}
-    return Response(response=jsonify(data),headers={"Access-Control-Allow-Origin": "*","Access-Control-Allow-Headers":"*","Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS","Access-Control-Allow-Credentials" : True ,"Content-Type" :"application/json","Cache-Control": "no-cache","Access-Control-Expose-Headers":"output"})
-  return Response(headers={"output":"Please Enter Valid Request","Access-Control-Allow-Origin": "*","Access-Control-Allow-Headers":"Content-Type,Authorization","Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS","Access-Control-Allow-Credentials" : True })
+  return {"response":"Server Running OK"}
 
 if __name__ == "__main__":
   app.run(debug=True)
