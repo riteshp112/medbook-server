@@ -16,8 +16,7 @@ def invoke():
     table=invokeRequest["table"]
     data=invokeRequest["data"]
     res=client["testdb"][table].insert_one(data)
-    print(res)
-    return {"response":res.bulk_api_result}
+    return({"response":{"iserted_id":str(res.inserted_id)}})
   elif invokeType=="update":
     table=invokeRequest["table"]
     id=invokeRequest["id"]
@@ -25,8 +24,7 @@ def invoke():
     myquery = { "_id": ObjectId(id) }
     newvalues = { "$set": changes }
     res=client["testdb"][table].update_one(myquery, newvalues)    
-    print(res)
-    return {"response":res.bulk_api_result}
+    return {"response":{"raw_result":str(res.raw_result),"upserted_id":res.upserted_id,"modified_count":res.modified_count,"matched_count":res.matched_count,"acknowledged":res.acknowledged}}
   elif invokeType=="select":
     print(str(request))
     table=invokeRequest["table"]
