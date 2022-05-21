@@ -1,3 +1,4 @@
+from audioop import reverse
 from crypt import methods
 from urllib import response
 from flask import Flask, jsonify, request ,redirect,Response
@@ -31,6 +32,7 @@ def invoke():
     condition=invokeRequest["condition"]
     limit=int(invokeRequest["limit"])
     data=client["testdb"][table].find(condition)
+    data.sort(reverse=True)
     data=list(data)[:limit]
     for item in data:
       item["_id"]=str(item["_id"])
