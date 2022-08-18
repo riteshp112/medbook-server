@@ -1,5 +1,7 @@
+import ast
 from audioop import reverse
 from crypt import methods
+import json
 from urllib import response
 from flask import Flask, jsonify, request ,redirect,Response
 import pymongo
@@ -11,6 +13,7 @@ CORS(app)
 def invoke():
   invokeRequest=dict(request.json)
   client = pymongo.MongoClient("mongodb+srv://riteshp112:6O8yYtaH1KvOaeyz@ritesh.l5gt1.mongodb.net/testdb?retryWrites=true&w=majority&authSource=admin",connect=False)
+  invokeRequest= ast.literal_eval(json.dumps(invokeRequest))
   print(invokeRequest)
   invokeType=invokeRequest["type"]
   if invokeType=="insert":
