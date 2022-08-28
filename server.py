@@ -26,8 +26,7 @@ def invoke():
     id=invokeRequest["id"]
     changes=invokeRequest["changes"]
     myquery = { "_id": ObjectId(id) }
-    newvalues = { "$set": changes }
-    res=client["testdb"][table].update_one(myquery, newvalues)    
+    res=client["testdb"][table].update_one(myquery, changes)    
     return {"response":{"raw_result":str(res.raw_result),"upserted_id":res.upserted_id,"modified_count":res.modified_count,"matched_count":res.matched_count,"acknowledged":res.acknowledged}}
   elif invokeType=="select":
     print(str(request))
