@@ -1,4 +1,3 @@
-from email.policy import default
 from connections import client
 from bson.objectid import ObjectId
 from collections import defaultdict

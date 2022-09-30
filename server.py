@@ -14,7 +14,7 @@ def invoke():
 
     invokeRequest = dict(request.json)
     invokeRequest = ast.literal_eval(json.dumps(invokeRequest))
-    type, *rest = invokeRequest.getValues()
+    type, *rest = invokeRequest.values()
     return OPERATIONS[type](rest)
 
 
