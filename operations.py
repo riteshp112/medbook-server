@@ -4,7 +4,7 @@ from collections import defaultdict
 
 
 def select(params):
-    table, condition, limit = params.values()
+    table, condition, limit = params
     data = client["testdb"][table].find(condition)
     data = list(data)[::-1]
     data = data[:limit]
@@ -14,7 +14,7 @@ def select(params):
 
 
 def update(params):
-    table, id, changes = params.values()
+    table, id, changes = params
     myquery = {"_id": ObjectId(id)}
     res = client["testdb"][table].update_one(myquery, changes)
     return {
@@ -29,7 +29,7 @@ def update(params):
 
 
 def insert(params):
-    table, data = params.values()
+    table, data = params
     res = client["testdb"][table].insert_one(data)
     return {"response": {"iserted_id": str(res.inserted_id)}}
 
