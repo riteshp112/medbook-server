@@ -13,9 +13,8 @@ api_instance = sib_api_v3_sdk.TransactionalEmailsApi(
 )
 
 
-def MailSender(props):
-    subject, sender, reply_to, html_content, to, params, headers, cc, bcc =props.values()
-    print(props,subject,sender,params,reply_to,to)
+def MailSender(params):
+    subject, sender, reply_to, html_content, to, params, headers, cc, bcc =params.values()
     send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(
         to=to,
         reply_to=reply_to,
