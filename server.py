@@ -4,6 +4,7 @@ from flask import Flask, request
 import pymongo
 from flask_cors import CORS
 from bson.objectid import ObjectId
+from config import MONGO_URI
 from myMailer import MailSender
 
 app = Flask(__name__)
@@ -12,9 +13,10 @@ CORS(app)
 
 @app.route("/invoke", methods=["GET", "POST"])
 def invoke():
+
     invokeRequest = dict(request.json)
     client = pymongo.MongoClient(
-        "mongodb+srv://riteshp112:6O8yYtaH1KvOaeyz@ritesh.l5gt1.mongodb.net/testdb?retryWrites=true&w=majority&authSource=admin",
+        MONGO_URI,
         connect=False,
     )
     invokeRequest = ast.literal_eval(json.dumps(invokeRequest))
