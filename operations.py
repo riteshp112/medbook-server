@@ -1,11 +1,11 @@
-from connections import client
+from connections import db
 from bson.objectid import ObjectId
 from collections import defaultdict
 
 
 def select(params):
     table, condition, limit = params
-    data = client["testdb"][table].find(condition)
+    data = db[table].find(condition)
     data = list(data)[::-1]
     data = data[:limit]
     for item in data:
@@ -14,9 +14,9 @@ def select(params):
 
 
 def update(params):
-    table, id, changes = params
+    id, table, changes = params
     myquery = {"_id": ObjectId(id)}
-    res = client["testdb"][table].update_one(myquery, changes)
+    res = db[table].update_one(myquery, changes)
     return {
         "response": {
             "raw_result": str(res.raw_result),
@@ -30,7 +30,7 @@ def update(params):
 
 def insert(params):
     table, data = params
-    res = client["testdb"][table].insert_one(data)
+    res = db[table].insert_one(data)
     return {"response": {"iserted_id": str(res.inserted_id)}}
 
 

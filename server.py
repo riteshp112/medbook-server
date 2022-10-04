@@ -11,11 +11,10 @@ CORS(app)
 
 @app.route("/invoke", methods=["GET", "POST"])
 def invoke():
-
     invokeRequest = dict(request.json)
     invokeRequest = ast.literal_eval(json.dumps(invokeRequest))
-    type, *rest = invokeRequest.values()
-    return OPERATIONS[type](rest)
+    type, *param = invokeRequest.values()
+    return OPERATIONS[type](param)
 
 
 @app.route("/sendMail", methods=["GET", "POST"])
