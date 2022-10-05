@@ -1,10 +1,11 @@
+import json
 from connections import db
 from bson.objectid import ObjectId
 from collections import defaultdict
-
+from operator import itemgetter
 
 def select(params):
-    table, condition, limit = params
+    table, condition, limit = itemgetter('table', 'condition', 'limit')(params)
     data = db[table].find(condition)
     data = list(data)[::-1]
     data = data[:limit]
@@ -14,7 +15,7 @@ def select(params):
 
 
 def update(params):
-    id, table, changes = params
+    id, table, changes = itemgetter('id', 'table', 'changes')(params)
     myquery = {"_id": ObjectId(id)}
     res = db[table].update_one(myquery, changes)
     return {
@@ -29,13 +30,13 @@ def update(params):
 
 
 def insert(params):
-    table, data = params
+    table, data = itemgetter('table', 'data')(params)
     res = db[table].insert_one(data)
     return {"response": {"iserted_id": str(res.inserted_id)}}
 
 
 def invalidOperation(params):
-    return {"response": "Invalid Operation"}
+    return {"response": "Invalid Operation with parameters "+ str(params)}
 
 
 OPERATIONS = defaultdict(

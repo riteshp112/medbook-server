@@ -13,8 +13,7 @@ CORS(app)
 def invoke():
     invokeRequest = dict(request.json)
     invokeRequest = ast.literal_eval(json.dumps(invokeRequest))
-    type, *param = invokeRequest.values()
-    return OPERATIONS[type](param)
+    return OPERATIONS[invokeRequest['type']](invokeRequest)
 
 
 @app.route("/sendMail", methods=["GET", "POST"])
