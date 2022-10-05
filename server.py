@@ -12,7 +12,7 @@ CORS(app)
 @app.route("/invoke", methods=["GET", "POST"])
 def invoke():
     invokeRequest = dict(request.json)
-    invokeRequest = ast.literal_eval(json.dumps(invokeRequest))
+    # invokeRequest = ast.literal_eval(json.dumps(invokeRequest))
     return OPERATIONS[invokeRequest['type']](invokeRequest)
 
 
