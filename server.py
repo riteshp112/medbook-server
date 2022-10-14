@@ -11,7 +11,9 @@ CORS(app)
 
 @app.route("/invoke", methods=["GET", "POST"])
 def invoke():
-    invokeRequest = dict(request.json)
+    invokeRequest = {}
+    if(request and request.json):
+        invokeRequest=dict(request.json)
     return OPERATIONS[invokeRequest['type']](invokeRequest)
 
 
