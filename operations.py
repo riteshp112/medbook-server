@@ -6,9 +6,7 @@ from operator import itemgetter
 
 def select(params):
     table, condition, limit = itemgetter('table', 'condition', 'limit')(params)
-    data = db[table].find(condition).sort({"_id":-1}).limit(limit)
-    # data = list(data)[::-1]
-    # data = data[:limit]
+    data = db[table].find(condition).sort([("_id",-1)]).limit(limit)
     for item in data:
         item["_id"] = str(item["_id"])
     return {"response": data}
