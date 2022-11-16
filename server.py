@@ -4,6 +4,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from myMailer import MailSender
 from operations import OPERATIONS
+from ast import literal_eval
 
 app = Flask(__name__)
 CORS(app)
@@ -13,12 +14,13 @@ CORS(app)
 def invoke():
     # try:
     invokeRequest = {}
-    if(request and request.json):
-        invokeRequest=dict(request.json)
-        invokeRequest = dict(json.dumps(invokeRequest))
-    return OPERATIONS[invokeRequest['type']](invokeRequest)
+    if request and request.json:
+        invokeRequest = dict(request.json)
+        invokeRequest = literal_eval(json.dumps(invokeRequest))
+    return OPERATIONS[invokeRequest["type"]](invokeRequest)
     # except :
-        # return {"response" : "Invalid Request"}
+    # return {"response" : "Invalid Request"}
+
 
 @app.route("/sendMail", methods=["GET", "POST"])
 def sendMail():
