@@ -11,13 +11,13 @@ CORS(app)
 
 @app.route("/invoke", methods=["GET", "POST"])
 def invoke():
-    try:
-        invokeRequest = {}
-        if(request and request.json):
-            invokeRequest=dict(request.json)
-        return OPERATIONS[invokeRequest['type']](invokeRequest)
-    except :
-        return {"response" : "Invalid Request"}
+    # try:
+    invokeRequest = {}
+    if(request and request.json):
+        invokeRequest=dict(request.json)
+    return OPERATIONS[invokeRequest['type']](invokeRequest)
+    # except :
+        # return {"response" : "Invalid Request"}
 
 @app.route("/sendMail", methods=["GET", "POST"])
 def sendMail():
