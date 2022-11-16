@@ -8,8 +8,8 @@ def select(params):
     table, condition, limit = itemgetter('table', 'condition', 'limit')(params)
     data = db[table].find(condition).sort([("_id",-1)]).limit(limit)
     data = list(data)
-    for item in data:
-        item["_id"] = str(item["_id"])
+    # for item in data:
+    #     item["_id"] = str(item["_id"])
     return {"response": data}
 
 
