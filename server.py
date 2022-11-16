@@ -15,7 +15,7 @@ def invoke():
     invokeRequest = {}
     if(request and request.json):
         invokeRequest=dict(request.json)
-        invokeRequest = json.dumps(invokeRequest)
+        invokeRequest = dict(json.dumps(invokeRequest))
     return OPERATIONS[invokeRequest['type']](invokeRequest)
     # except :
         # return {"response" : "Invalid Request"}
