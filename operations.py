@@ -15,8 +15,8 @@ def select(params):
 
 def update(params):
     id, table, changes = itemgetter("id", "table", "changes")(params)
-    # myquery = {"_id": ObjectId(id)}
-    res = db[table].update_one({"_id":id}, changes)
+    myquery = {"_id": ObjectId(id["$oid"])}
+    res = db[table].update_one(myquery, changes)
     return {
         "response": {
             "raw_result": str(res.raw_result),
