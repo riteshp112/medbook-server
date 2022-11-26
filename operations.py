@@ -1,22 +1,23 @@
 import json
 from connections import db
-from bson.objectid import ObjectId
 from collections import defaultdict
 from operator import itemgetter
-from utils import parse_json
+
+
+def parseObjectId(obj):
+    return str(obj)
 
 
 def select(params):
     table, condition, limit = itemgetter("table", "condition", "limit")(params)
     data = db[table].find(condition).sort([("_id", -1)]).limit(limit)
     data = list(data)
-    return {"response": parse_json(data)}
+    return {"response": json.loads(json.dumps(data, default=(parseObjectId)))}
 
 
 def update(params):
-    id, table, changes = itemgetter("id", "table", "changes")(params)
-    myquery = {"_id": ObjectId(id["$oid"])}
-    res = db[table].update_one(myquery, changes)
+    condition, table, changes = itemgetter("condition", "table", "changes")(params)
+    res = db[table].update_one(condition, changes)
     return {
         "response": {
             "raw_result": str(res.raw_result),
