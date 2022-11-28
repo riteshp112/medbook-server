@@ -12,16 +12,14 @@ CORS(app)
 @app.route("/invoke", methods=["GET", "POST"])
 def invoke():
     invokeRequest = {}
-    # try:
-    if request and request.json:
-        invokeRequest = dict(request.json)
-        invokeRequest = json.dumps(invokeRequest)
-        invokeRequest = json.loads(invokeRequest, object_hook=parseRequest)
-        return OPERATIONS[invokeRequest["type"]](invokeRequest)
-    # except:
-    #     return {
-    #         "response": {"error": "Something is wrong : body " + str(invokeRequest)}
-    #     }
+    try:
+        if request and request.json:
+            invokeRequest = dict(request.json)
+            invokeRequest = json.dumps(invokeRequest)
+            invokeRequest = json.loads(invokeRequest, object_hook=parseRequest)
+            return OPERATIONS[invokeRequest["type"]](invokeRequest)
+    except Exception as e:
+        return {"response": {"error": str(e) + ": body " + str(invokeRequest)}}
 
 
 @app.route("/sendMail", methods=["GET", "POST"])
