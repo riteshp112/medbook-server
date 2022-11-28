@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-project_folder = os.path.expanduser("")  # adjust as appropriate
+project_folder = os.path.expanduser("~/medbook/medbook-server")  # adjust as appropriate
 load_dotenv(os.path.join(project_folder, ".env"))
 
 MAIL_API_KEY = os.getenv("MAIL_API_KEY")
