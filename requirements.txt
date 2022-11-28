@@ -34,3 +34,4 @@ SpeechRecognition==3.8.1
 urllib3==1.26.12
 Werkzeug==2.0.2
 python-dotenv==0.21.0
+python-dotenv
