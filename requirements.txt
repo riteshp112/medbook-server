@@ -33,4 +33,4 @@ soupsieve==2.3.2.post1
 SpeechRecognition==3.8.1
 urllib3==1.26.12
 Werkzeug==2.0.2
-dotenv
+python-dotenv==0.21.0
