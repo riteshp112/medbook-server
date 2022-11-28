@@ -1,8 +1,6 @@
 import json
 from connections import db
-from collections import defaultdict
 from operator import itemgetter
-from methods.Authenticate import authenticateUser
 
 
 def parseObjectId(obj):
@@ -44,12 +42,4 @@ def invalidOperation(params):
     return {"response": {"error": "Invalid Operation with parameters " + str(params)}}
 
 
-OPERATIONS = defaultdict(
-    lambda: invalidOperation,
-    {
-        "update": update,
-        "select": select,
-        "insert": insert,
-        "authenticateUser": authenticateUser,
-    },
-)
+
