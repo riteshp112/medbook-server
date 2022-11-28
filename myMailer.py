@@ -4,9 +4,7 @@ import sib_api_v3_sdk
 from sib_api_v3_sdk.rest import ApiException
 
 configuration = sib_api_v3_sdk.Configuration()
-configuration.api_key[
-    "api-key"
-] = MAIL_API_KEY
+configuration.api_key["api-key"] = MAIL_API_KEY
 
 api_instance = sib_api_v3_sdk.TransactionalEmailsApi(
     sib_api_v3_sdk.ApiClient(configuration)
@@ -14,7 +12,17 @@ api_instance = sib_api_v3_sdk.TransactionalEmailsApi(
 
 
 def MailSender(params):
-    subject, sender, reply_to, html_content, to, params, headers, cc, bcc =params.values()
+    (
+        subject,
+        sender,
+        reply_to,
+        html_content,
+        to,
+        params,
+        headers,
+        cc,
+        bcc,
+    ) = params.values()
     send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(
         to=to,
         reply_to=reply_to,
@@ -24,6 +32,6 @@ def MailSender(params):
     )
     try:
         api_response = api_instance.send_transac_email(send_smtp_email)
-        return api_response
+        return {"response": {"result": api_response}}
     except ApiException as e:
-        return "Exception when calling SMTPApi->send_transac_email:" + str(e)
+        return {"error": "Exception when calling SMTPApi->send_transac_email:" + str(e)}
