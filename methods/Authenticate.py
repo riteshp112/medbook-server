@@ -9,6 +9,6 @@ def authenticateUser(params):
         result = result[0]
         userId = result.user._id
         userDetails = select({"table": "testcol", "condition": {"_id": userId}})
-        return {result: userDetails}
+        return {result: [userDetails]}
     else:
         return {"error": "You have to login first."}
