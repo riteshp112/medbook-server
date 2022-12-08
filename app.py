@@ -18,6 +18,8 @@ def invoke():
             invokeRequest = json.dumps(invokeRequest)
             invokeRequest = json.loads(invokeRequest, object_hook=parseRequest)
             return OPERATIONS[invokeRequest["type"]](invokeRequest)
+        else:
+            return "Server is running ok"
     except Exception as e:
         return {"response": {"error": str(e) + ": body " + str(invokeRequest)}}
 
