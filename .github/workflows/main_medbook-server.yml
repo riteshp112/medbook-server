@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'Medbook-Server'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A7EB09D6A6504C57802F1AC73A88AF57 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DE13D128B56246359A0DF381F659FBAB }}
