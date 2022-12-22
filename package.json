@@ -1,5 +1,8 @@
 {
   "scripts": {
     "start-local": "sh .start-local.sh"
+  },
+  "dependencies": {
+    "@railway/cli": "^2.0.13"
   }
 }
