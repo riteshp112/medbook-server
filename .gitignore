@@ -1,4 +1,4 @@
+.vscode/
 .start-local.sh
-/env
-/node_modules
-.vscode
+env/
+node_modules/
