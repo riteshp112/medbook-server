@@ -17,4 +17,4 @@ def authenticateUser(params):
         userDetails = userDetails["response"]["result"][0]
         return {"response": {"result": [userDetails]}}
     else:
-        return {"response": {"error": "You have to login first."}}
+        return {"response": {"error": "Invalid Token"}}
