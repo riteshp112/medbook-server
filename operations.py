@@ -1,7 +1,7 @@
 import json
 from connections import db
 from operator import itemgetter
-from datetime import date
+from datetime import datetime
 
 
 def parseObjectId(obj):
@@ -19,7 +19,7 @@ def select(params):
 
 def update(params):
     condition, table, changes = itemgetter("condition", "table", "changes")(params)
-    changes["$set"] = {"_lastModifiedOn": date.today().isoformat()}
+    changes["$set"] = {"_lastModifiedOn": datetime.now().isoformat()}
     res = db[table].update_one(condition, changes)
     return {
         "response": {
@@ -36,7 +36,7 @@ def update(params):
 
 def insert(params):
     table, data = itemgetter("table", "data")(params)
-    data["_createdOn"] = date.today().isoformat()
+    data["_createdOn"] = datetime.now().isoformat()
     res = db[table].insert_one(data)
     return {"response": {"result": {"iserted_id": str(res.inserted_id)}}}
 
