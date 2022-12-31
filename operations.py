@@ -1,6 +1,7 @@
 import json
 from connections import db
 from operator import itemgetter
+from datetime import date
 
 
 def parseObjectId(obj):
@@ -18,6 +19,7 @@ def select(params):
 
 def update(params):
     condition, table, changes = itemgetter("condition", "table", "changes")(params)
+    changes["_lastModifiedOn"] = date.today()
     res = db[table].update_one(condition, changes)
     return {
         "response": {
@@ -34,12 +36,10 @@ def update(params):
 
 def insert(params):
     table, data = itemgetter("table", "data")(params)
+    data["_createdOn"] = date.today()
     res = db[table].insert_one(data)
     return {"response": {"result": {"iserted_id": str(res.inserted_id)}}}
 
 
 def invalidOperation(params):
     return {"response": {"error": "Invalid Operation with parameters " + str(params)}}
-
-
-
