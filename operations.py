@@ -19,7 +19,7 @@ def select(params):
 
 def update(params):
     condition, table, changes = itemgetter("condition", "table", "changes")(params)
-    changes["_lastModifiedOn"] = date.today()
+    changes["_lastModifiedOn"] = date.today().isoformat()
     res = db[table].update_one(condition, changes)
     return {
         "response": {
@@ -36,7 +36,7 @@ def update(params):
 
 def insert(params):
     table, data = itemgetter("table", "data")(params)
-    data["_createdOn"] = date.today()
+    data["_createdOn"] = date.today().isoformat()
     res = db[table].insert_one(data)
     return {"response": {"result": {"iserted_id": str(res.inserted_id)}}}
 
