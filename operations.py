@@ -19,7 +19,7 @@ def select(params):
 
 def update(params):
     condition, table, changes = itemgetter("condition", "table", "changes")(params)
-    changes['$set']["_lastModifiedOn"] = date.today().isoformat()
+    changes["$set"] = {"_lastModifiedOn": date.today().isoformat()}
     res = db[table].update_one(condition, changes)
     return {
         "response": {
