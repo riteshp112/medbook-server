@@ -1,36 +1,17 @@
-import json
-from flask import Flask, request
+from flask import Flask
 from flask_cors import CORS
-from myMailer import MailSender
-from index import OPERATIONS
-from utils import parseRequest
+from flask_mongoengine import MongoEngine
+from modules.user.Routes import user
 
 app = Flask(__name__)
 CORS(app)
+app.register_blueprint(user)
+app.config['MONGODB_SETTINGS'] = {
+    'db': 'mydatabase',
+    'host': 'mongodb://localhost:27017/mydatabase'
+}
+db = MongoEngine(app)
 
-
-@app.route("/invoke", methods=["GET", "POST"])
-def invoke():
-    invokeRequest = {}
-    try:
-        if request and request.json:
-            invokeRequest = dict(request.json)
-            invokeRequest = json.dumps(invokeRequest)
-            invokeRequest = json.loads(invokeRequest, object_hook=parseRequest)
-            return OPERATIONS[invokeRequest["type"]](invokeRequest)
-        else:
-            return "Server is running ok"
-    except Exception as e:
-        return {"response": {"error": str(e) + ": body " + str(invokeRequest)}}
-
-
-@app.route("/sendMail", methods=["GET", "POST"])
-def sendMail():
-    invokeRequest = dict(request.json)
-    invokeRequest = json.dumps(invokeRequest)
-    invokeRequest = json.loads(invokeRequest, object_hook=parseRequest)
-    res = MailSender(invokeRequest)
-    return {"response": {"result": str(res)}}
 
 
 if __name__ == "__main__":
