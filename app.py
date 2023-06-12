@@ -47,7 +47,7 @@ def sendGoodMorning():
             "sender": {"name": "Ritesh Patel", "email": "riteshp112@gmail.com"},
             "reply_to": {"name": "Ritesh Patel", "email": "riteshp112@gmail.com"},
             "to": userEmails,
-            "html_content": "<text>Dear User , </b> Good Morning</text>",
+            "html_content": "<text>Dear Medbook User , </b> Good Morning</text>",
         }
     )
     res = MailSender(invokeRequest)
