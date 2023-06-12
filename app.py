@@ -36,8 +36,10 @@ def sendMail():
 
 @app.route("/goodMorning", methods=["GET", "POST"])
 def sendGoodMorning():
-    users = db.Users.find()
+    users = db['testcol'].find()
+    users = list(users)
     userEmails = [user.email for user in users]
+    print(users)
     invokeRequest = dict(
         {
             "subject": "Good Morning",
