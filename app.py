@@ -41,8 +41,8 @@ def sendGoodMorning():
     invokeRequest = dict(
         {
             "subject": "Good Morning",
-            "sender": "ritesh.patel972002@gmail.com",
-            "reply_to": "ritesh.patel972002@gmail.com",
+            "sender": "riteshp112@gmail.com",
+            "reply_to": "riteshp112@gmail.com",
             "to": userEmails,
             "html_content": "<text>Dear User , </b> Good Morning</text>",
         }
