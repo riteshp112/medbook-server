@@ -2,3 +2,4 @@
 .start-local.sh
 env/
 node_modules/
+__pycatche__/
