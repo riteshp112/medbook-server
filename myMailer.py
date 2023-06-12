@@ -2,7 +2,7 @@ from __future__ import print_function
 from config import MAIL_API_KEY
 import sib_api_v3_sdk
 from sib_api_v3_sdk.rest import ApiException
-from itertools import itemgetter
+from operator import itemgetter
 
 configuration = sib_api_v3_sdk.Configuration()
 configuration.api_key["api-key"] = MAIL_API_KEY
