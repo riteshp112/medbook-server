@@ -36,7 +36,7 @@ def sendMail():
 
 @app.route("/goodMorning", methods=["GET", "POST"])
 def sendGoodMorning():
-    users = db["testcol"].find({"email": {"$exist": True}})
+    users = db["testcol"].find({"email": {"$exists": True}})
     users = list(users)
     userEmails = [
         {"name": user.get("name"), "email": user.get("email")} for user in users
