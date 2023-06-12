@@ -38,7 +38,9 @@ def sendMail():
 def sendGoodMorning():
     users = db["testcol"].find()
     users = list(users)
-    userEmails = [{"name": user["name"], "email": user["email"]} for user in users]
+    userEmails = [
+        {"name": user.get("name"), "email": user.get("email")} for user in users
+    ]
     print(users)
     invokeRequest = dict(
         {
