@@ -41,7 +41,7 @@ def sendGoodMorning():
     userEmails = [
         {"name": user.get("name"), "email": user.get("email","")} for user in users
     ]
-    print(users)
+    print(userEmails)
     invokeRequest = dict(
         {
             "subject": "Good Morning",
