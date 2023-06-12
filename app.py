@@ -4,6 +4,7 @@ from flask_cors import CORS
 from myMailer import MailSender
 from index import OPERATIONS
 from utils import parseRequest
+from connections import db
 
 app = Flask(__name__)
 CORS(app)
@@ -29,6 +30,22 @@ def sendMail():
     invokeRequest = dict(request.json)
     invokeRequest = json.dumps(invokeRequest)
     invokeRequest = json.loads(invokeRequest, object_hook=parseRequest)
+    res = MailSender(invokeRequest)
+    return {"response": {"result": str(res)}}
+
+
+@app.route("/goodMorning", methods=["GET", "POST"])
+def sendGoodMorning():
+    users = db.Users.find()
+    userEmails = [user.email for user in users]
+    invokeRequest = dict(
+        {
+            "subject": "Good Morning",
+            "sender": "ritesh.patel972002@gmail.com",
+            "to": userEmails,
+            "html_content": "<text>Dear User , </b> Good Morning</text>",
+        }
+    )
     res = MailSender(invokeRequest)
     return {"response": {"result": str(res)}}
 
