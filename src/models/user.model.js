@@ -11,6 +11,18 @@ const userSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    username: {
+      type: String,
+      required: true,
+      trim: true,
+      unique: true,
+    },
+    mobile: {
+      type: String,
+      required: true,
+      trim: true,
+      unique: true,
+    },
     email: {
       type: String,
       required: true,
@@ -44,6 +56,27 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isMobileVerified: {
+      type: Boolean,
+      default: false,
+    },
+    dob: {
+      type: Date,
+      required: true,
+      validate(value) {
+        if (value > new Date()) {
+          throw new Error('Invalid date of birth');
+        }
+        const days = (new Date() - value) / 86400000;
+        if (days / 365 < 13) {
+          throw new Error('User must be at least 13 years old come back after ' + (days % (13 * 365)) + ' days');
+        }
+      },
+    },
+    gender: {
+      type: String,
+      enum: ['M', 'F', 'L', 'G', 'B', 'T', 'Q', 'O'],
+    },
   },
   {
     timestamps: true,
@@ -65,6 +98,15 @@ userSchema.statics.isEmailTaken = async function (email, excludeUserId) {
   return !!user;
 };
 
+userSchema.statics.isMobileTaken = async function (mobile, excludeUserId) {
+  const user = await this.findOne({ mobile, _id: { $ne: excludeUserId } });
+  return !!user;
+};
+
+userSchema.statics.isUsernameTaken = async function (username, excludeUserId) {
+  const user = await this.findOne({ username, _id: { $ne: excludeUserId } });
+  return !!user;
+};
 /**
  * Check if password matches the user's password
  * @param {string} password

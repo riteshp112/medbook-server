@@ -13,7 +13,7 @@ By running a single command, you will get a production-ready Node.js app install
 To create a project, simply run:
 
 ```bash
-npx create-nodejs-express-app <project-name>
+npx medbook-server <project-name>
 ```
 
 Or
@@ -29,8 +29,8 @@ If you would still prefer to do the installation manually, follow these steps:
 Clone the repo:
 
 ```bash
-git clone --depth 1 https://github.com/hagopj13/node-express-boilerplate.git
-cd node-express-boilerplate
+git clone --depth 1 https://github.com/riteshp112/medbook-server
+cd medbook-server
 npx rimraf ./.git
 ```
 
