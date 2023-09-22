@@ -9,8 +9,16 @@ def parseObjectId(obj):
 
 
 def select(params):
-    table, condition, limit = itemgetter("table", "condition", "limit")(params)
-    data = db[table].find(condition).sort([("_id", -1)]).limit(limit)
+    table, condition, limit, skip, sort = itemgetter(
+        "table", "condition", "limit", "skip", "sort"
+    )(params)
+    data = (
+        db[table]
+        .find(condition)
+        .sort([sort.items(), ("_id", -1)])
+        .limit(limit)
+        .skip(skip)
+    )
     data = list(data)
     return {
         "response": {"result": json.loads(json.dumps(data, default=(parseObjectId)))}
