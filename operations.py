@@ -2,6 +2,7 @@ import json
 from connections import db
 from operator import itemgetter
 from datetime import datetime
+from collections import defaultdict
 
 
 def parseObjectId(obj):
@@ -9,6 +10,7 @@ def parseObjectId(obj):
 
 
 def select(params):
+    params = defaultdict(lambda: None, params)
     table, condition, limit, skip, sort = itemgetter(
         "table", "condition", "limit", "skip", "sort"
     )(params)
