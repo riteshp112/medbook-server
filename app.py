@@ -12,7 +12,6 @@ CORS(app)
 
 @app.route("/invoke", methods=["GET", "POST"])
 def invoke():
-    invokeRequest = {}
     try:
         if request and request.json:
             invokeRequest = dict(request.json)
@@ -38,11 +37,9 @@ def sendMail():
 def sendGoodMorning():
     users = db["testcol"].find({"email": {"$exists": True}})
     users = list(users)
-    print('users',users)
     userEmails = [
         {"name": user.get("name"), "email": user.get("email")} for user in users
     ]
-    print('user emails',userEmails)
     invokeRequest = dict(
         {
             "subject": "Good Morning",
@@ -52,9 +49,7 @@ def sendGoodMorning():
             "html_content": "<text>Dear Medbook User , </b> Good Morning</text>",
         }
     )
-    print('invoke request',invokeRequest)
     res = MailSender(invokeRequest)
-    print('res',res)
     return {"response": {"result": str(res)}}
 
 
