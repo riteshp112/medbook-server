@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 
 def authenticateUser(params):
     token = itemgetter("token")(params)
-    result = select({"table": "Tokens", "condition": {"token": token}, "limit": 1})
+    result = select({"table": "Tokens", "condition": {"token": token}, "limit": 1,"skip":0})
     result = result["response"]["result"]
     print(result)
     if len(result):
