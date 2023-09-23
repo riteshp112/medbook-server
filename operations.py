@@ -10,7 +10,6 @@ def parseObjectId(obj):
 
 
 def select(params):
-    params = defaultdict(lambda: None, params.items())
     table, condition, limit, skip, sort = itemgetter(
         "table", "condition", "limit", "skip", "sort"
     )(params)
