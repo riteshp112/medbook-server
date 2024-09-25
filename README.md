@@ -45,20 +45,20 @@ MedBook Server is a robust backend infrastructure for managing medical records, 
 ### Steps
 1. Clone the repository: 
    ```bash
-git clone https://github.com/riteshp112/medbook-server.git```
+   git clone https://github.com/riteshp112/medbook-server.git```
 
-2. Install dependencies:
+3. Install dependencies:
    ```bash
         npm i
    ```
    
-3. Create a `.env` file with the following variables:
+4. Create a `.env` file with the following variables:
    ```makefile
    PORT=3000
    MONGO_URI=mongodb://localhost:27017/medbook
    JWT_SECRET=your_secret_key
 
-4. Start the server:
+5. Start the server:
   ```bash
       npm start
    ```
