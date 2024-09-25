@@ -55,7 +55,7 @@ git clone https://github.com/riteshp112/medbook-server.git```
 PORT=3000
 MONGO_URI=mongodb://localhost:27017/medbook
 JWT_SECRET=your_secret_key```
-Start the server:
+4. Start the server:
   ```bash
       npm start```
 
