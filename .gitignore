@@ -1,5 +1,4 @@
 .vscode/
-.start-local.sh
 env/
 node_modules/
-__pycatche__/
+__pycache__/
