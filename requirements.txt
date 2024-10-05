@@ -6,10 +6,12 @@ dnspython==2.6.1
 Flask==3.0.3
 Flask-Cors==5.0.0
 Flask-SocketIO==5.4.1
+gunicorn==23.0.0
 h11==0.14.0
 itsdangerous==2.2.0
 Jinja2==3.1.4
 MarkupSafe==2.1.5
+packaging==24.1
 pymongo==4.10.1
 python-dateutil==2.9.0.post0
 python-engineio==4.9.1
