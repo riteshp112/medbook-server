@@ -14,8 +14,10 @@ CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 thread_clients = {}
 
+
 @app.route("/invoke", methods=["GET", "POST"])
 def invoke():
+    invokeRequest = None
     try:
         if request and request.json:
             invokeRequest = dict(request.json)
@@ -61,8 +63,18 @@ collection = db["images"]
 
 
 def allowed_file(filename):
-    return True
-    ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+    ALLOWED_EXTENSIONS = {
+        "png",
+        "jpg",
+        "jpeg",
+        "gif",
+        "mp4",
+        "mov",
+        "avi",
+        "mkv",
+        "wmv",
+        "3gp",
+    }
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
@@ -104,9 +116,9 @@ def retrieve_image(file_id):
         return jsonify({"error": "File not found"}), 404
     decoded_data = base64.b64decode(file_data["data"])
     response = Response(decoded_data, content_type="application/octet-stream")
-    response.headers[
-        "Content-Disposition"
-    ] = f'attachment; filename={file_data["filename"]}'
+    response.headers["Content-Disposition"] = (
+        f'attachment; filename={file_data["filename"]}'
+    )
     return response
 
 
@@ -124,15 +136,16 @@ def join_thread(data):
         thread_clients[thread_id] = []
     thread_clients[thread_id].append(request.sid)
 
+
 @socketio.on("message_sent")
 def reload_chat(data):
     print(data)
-    thread_id = data['thread_id']
+    thread_id = data["thread_id"]
     if thread_id in thread_clients:
         for client_sid in thread_clients[thread_id]:
             socketio.emit(
-            "reload_chat", {"threadId": thread_id}, namespace="/", room=client_sid
-        )
+                "reload_chat", {"threadId": thread_id}, namespace="/", room=client_sid
+            )
 
 
 if __name__ == "__main__":
